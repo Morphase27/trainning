@@ -7,17 +7,17 @@
 
 int main() {
 
-    char test[8] = "testing";
-    char dest[10];
+    char test[10] = "test";
+    char dest[] = "ing";
+    //size_t len;
     //dest = (char*)malloc(8);
 
-    int l2;
-	l2 = ft_strlen(test);
-
-   ft_strncpy(dest, test, 10);
+    ft_strncat(test, dest, 5);
    
-    printf("%s \n", dest);
-    printf("%i \n", l2);
+   
+   //printf("valeur : %s \n", test);
+   //printf("%zu \n", len);
+   printf("%s \n", test);
 
     return 0;
 }

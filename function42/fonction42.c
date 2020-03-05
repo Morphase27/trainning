@@ -124,10 +124,8 @@ int ft_memcmp(const void *s1, const void *s2, size_t n){
         return 0;
     }else{
 		for (i= 0; i<n; i++){
-			if (copy[i] > copy2[i]){
+			if (copy[i] != copy2[i]){
 				return (copy[i] - copy2[i]);
-			}else if (copy[i] < copy2[i]){
-				return (copy2[i] - copy[i]);
 			}
 		}
 	}
@@ -190,7 +188,6 @@ if (!dst || !src){
 	}
 	while (src[i] != '\0');
 	
-
 	return dst;
 }
 
@@ -214,21 +211,68 @@ if (!dst || !src || len == 0){
 	return dst;
 }
 
-char *ft_strcat(char *restrict s1, const char *restrict s2){
+  char *ft_strcat(char *restrict s1, const char *restrict s2){
 
-if (!s1 || !s2){
-	return NULL;
+	if (!s1 || !s2){
+		return NULL;
+	} else {
+		size_t i;
+		size_t len1 = sizeof(s1)/ sizeof(char);
+		size_t len2 = ft_strlen(s2); 
+		if (len1<len2){
+			return NULL;
+		} else {
+			len1= ft_strlen(s1);
+			for (i=0; i<len2; i++){
+				s1[len1 + i]= s2[i];
+			}
+			s1[len1 + i +1] = '\0';
+			return s1;
+		}
+	}
+} 
+
+
+char *ft_strcat2(char *restrict s1, const char *restrict s2){
+
+	if (!s1 || !s2){
+		return NULL;
+	} else {
+		size_t len1 = sizeof(s1)/ sizeof(char);
+		size_t len2 = ft_strlen(s2); 
+		if (len1<len2){
+			return NULL;
+		} else {
+			len1= ft_strlen(s1);
+			ft_strcpy(s1 + len1, s2);
+			return s1;
+		}
+	}
 }
 
 
-}
 
 char *ft_strncat(char *restrict s1, const char *restrict s2, size_t n){
 
-if (!s1 || !s2 || n ==0){	`
-
-
+if (!s1 || !s2 || n ==0){
+	return NULL;
+	} else {
+		size_t i;
+		size_t len1 = (sizeof(s1) / sizeof(char)) - ft_strlen(s2);
+		size_t len2 = ft_strlen(s2); 
+		if (len1<len2 && len1<n){
+			return NULL;
+		} else {
+			len1= ft_strlen(s1);
+			for (i=0; i<n && i< len2; i++){
+				s1[len1 + i]= s2[i];
+			}
+			s1[len1 + i +1] = '\0';
+			return s1;
+		}
+	}
 }
+
 
 
 
