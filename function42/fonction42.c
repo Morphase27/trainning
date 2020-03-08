@@ -273,6 +273,175 @@ if (!s1 || !s2 || n ==0){
 	}
 }
 
+ size_t ft_strlcat(int *table, char * restrict dst, const char * restrict src, size_t dstsize){
+
+	if (!dst || !src || dstsize == 0){
+		return 0;
+	} else {
+		if ((sizeof(dst) / sizeof(char)) < dstsize){
+			size_t i;
+			for (i = 0; i <10; i++){
+				table[i] = sizeof(dst[i]);
+			}
+			return sizeof(dst);
+		}else{			
+			size_t i;
+			size_t lendst = ft_strlen(dst); 
+			for (i=0; i<(dstsize - 1 - lendst) && src[i] != '\0'; i++){
+				dst[lendst +i] = src[i];
+		    }
+		dst[lendst +i + 1] = '\0';
+		return i + lendst;
+	    }
+	} 
+}
+
+char *ft_strchr(const char *s, int c){
+
+	if (!s){
+		return NULL;
+	} else {
+		char *cdest = (char*)s;
+		size_t len = ft_strlen(cdest);
+		size_t i;
+		for (i=0; i< len; i++){
+			if (cdest[i]== c){
+				return cdest+i;
+			}
+		}
+		return NULL;
+	}	
+}
+
+char *ft_strrchr(const char *s, int c){
+
+	if (!s){
+		return NULL;
+	} else {
+		char *cdest = (char*)s;
+		size_t len = ft_strlen(cdest);
+		size_t i;
+		for (i=0; i< len; i++){
+			if (cdest[len-i]== c){
+				return cdest+ len - i;
+			}
+		}
+		return NULL;
+	}	
+}
+
+char *ft_strstr(const char *haystack, const char *needle){
+
+	if (!haystack || !needle){
+		return NULL;
+	}
+	size_t len = ft_strlen(needle);
+	if(ft_memcmp(needle, "", len)== 0){
+		return (char*)haystack;
+	} else {
+		size_t i;
+		size_t len2 = ft_strlen(haystack);
+		char *copy;
+		copy = (char*)malloc(len * sizeof(char));
+		//char *copy2 = (char*)haystack;
+		for(i=0; i<len2; i++){
+			size_t n = 0;
+			if(haystack[i] == needle[n]){
+				for(n=0; n<len; n++){
+					copy[n]= haystack[i+n];
+				}
+				if(ft_memcmp(needle, copy, len) == 0){
+					free (copy);
+					return (char*)haystack + i;
+				}
+			}
+		}
+		free (copy);
+	}
+	return NULL;	
+}
+
+char *ft_strnstr(const char *haystack, const char *needle, size_t l){
+
+	if (!haystack || !needle || l == 0){
+		return NULL;
+	}
+	size_t len = ft_strlen(needle);
+	if(ft_memcmp(needle, "", len)== 0){
+		return (char*)haystack;
+	} else {
+		size_t i;
+		size_t len2 = ft_strlen(haystack);
+		char *copyNeedle;
+		copyNeedle = (char*)malloc(len * sizeof(char));
+		//char *copy2 = (char*)haystack;
+		for(i=0; i<len2 && i<l; i++){
+			if ((l - i) > len && (len2 - i) > len){
+				size_t n = 0;
+				if(haystack[i] == needle[n]){
+						for(n=0; n<len; n++){
+							copyNeedle[n]= haystack[i+n];
+						}
+						if(ft_memcmp(needle, copyNeedle, len) == 0){
+							free (copyNeedle);
+							return (char*)haystack + i;
+						}
+				}
+			}
+		}
+		free (copyNeedle);
+	}
+	return NULL;	
+
+}
+
+int ft_strcmp(const char *s1, const char *s2){
+
+	if (!s1 || !s2){
+		return 0;
+	} else {
+		size_t i;
+		size_t len1 = ft_strlen(s1);
+		size_t len2 = ft_strlen(s2);
+		for(i=0; i< (len1 +1) && i<(len2 +1); i++){
+			if(s1[i] != s2[i]){
+				return (unsigned int)(s1[i]-s2[i]);
+			}
+		}
+		return 0;
+	}
+}
+
+int ft_strncmp(const char *s1, const char *s2, size_t n){
+
+
+	if (!s1 || !s2 || n == 0){
+		return 0;
+	} else {
+		size_t i;
+		size_t len1 = ft_strlen(s1);
+		size_t len2 = ft_strlen(s2);
+		for(i=0; i< (len1 +1) && i<(len2 +1) && i<n ; i++){
+			if(s1[i] != s2[i]){
+				return (unsigned int)(s1[i]-s2[i]);
+			}
+		}
+		return 0;
+	}
+}
+
+int ft_atoi(const char *str){
+
+	
+}
+
+
+
+
+
+
+
+
 
 
 

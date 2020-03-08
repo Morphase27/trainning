@@ -7,17 +7,36 @@
 
 int main() {
 
-    char test[10] = "test";
-    char dest[] = "ing";
-    //size_t len;
-    //dest = (char*)malloc(8);
+    char src[10] = "100";
+    char test[] = "1000";
+    //char *dest;
+    size_t len;
 
-    ft_strncat(test, dest, 5);
+   /*
+    size_t len;
+    size_t l;
+    int table[10];
+    size_t n;
+
+    l = (sizeof(test) / sizeof(char));
+    len = ft_strlcat(table, test, dest, 10);
    
    
    //printf("valeur : %s \n", test);
-   //printf("%zu \n", len);
-   printf("%s \n", test);
+   for (n = 0; n<10; n++){
+   	printf("%i \n", table[n]);
+   }
+   printf("%zu \n", len);
+   printf("%zu \n", l);
+   printf("%s \n", test); */
+
+ 	
+    
+    len = ft_strncmp(test, src, 3);
+ 
+ 	printf("%zu \n", len);
+
+
 
     return 0;
 }
