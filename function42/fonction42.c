@@ -432,10 +432,52 @@ int ft_strncmp(const char *s1, const char *s2, size_t n){
 
 int ft_atoi(const char *str){
 
-	
+
+	if (!str){
+		return 0;
+	} else {
+		size_t i;
+		int n;
+		size_t len = ft_strlen(str);
+		char chiffre[] = "0123456789";
+		int newint = 0;
+		for (i=0; i<len; i++){
+			if(ft_strchr(chiffre, str[i]) == NULL){
+				if(i==0){
+					return 0;
+				} else {
+					len = i;
+				}
+			}
+		}
+		n=1;
+		for (i=0 ; i<len; i++){
+			newint = newint + (str[len -1 - i] - 48) * n;
+			n=n*10;
+		}
+		return  newint;
+
+	}
 }
 
+int ft_isalpha(int c){
 
+	int table[52];
+	size_t i;
+	size_t n;
+	for (i=0, n=65; i<52; i++, n++){
+		//if(n == 108 || n== 118 || n == 128 || n== 138 || n==148 || n==158 || n== 168){
+			//n=n+2;
+		//}
+		table[i] = n;
+	}
+	for(i=0; i<52; i++){
+		if (table[i]==c){
+			return 1;
+		}
+	}
+	return 0;
+}
 
 
 

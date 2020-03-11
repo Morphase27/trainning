@@ -3,14 +3,18 @@
 #include <string.h>
 #include <unistd.h>
 #include "header42.h"
+#include <ctype.h>
+
 
 
 int main() {
 
-    char src[10] = "100";
-    char test[] = "1000";
+	int test = 'B';
+    //char src[] = "choc";
+    //char test[] = "1?2";
+    int val;
+    //size_t len;
     //char *dest;
-    size_t len;
 
    /*
     size_t len;
@@ -32,9 +36,16 @@ int main() {
 
  	
     
-    len = ft_strncmp(test, src, 3);
+    val = ft_isalpha(test);
  
- 	printf("%zu \n", len);
+ 	printf("%i \n", val);
+ 	printf("%i \n", test);
+ 	
+ 	//printf("%s \n", src);
+ 	//printf("%s \n", test);
+ 	
+ 
+
 
 
 
